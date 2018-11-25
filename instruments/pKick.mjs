@@ -11,7 +11,7 @@ export class pKick {
     // Default options
     if (typeof options !== 'object') {
       options = {
-        audio_url: 'sounds/kick.oggx',
+        audio_url: 'sounds/kick.ogg',
       }
     }
 
