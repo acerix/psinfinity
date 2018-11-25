@@ -26,6 +26,19 @@ export class pSnare {
       source.start('8n')
     }, '8n')
 
+    // Randomly silence
+    var measure = -1
+    Tone.Transport.scheduleRepeat(function(time){
+      measure++
+      if (measure % 3 === 0) return
+      if (Math.random() > 0.2) {
+        source.volume.value = 0
+      }
+      else {
+        source.volume.value = -1024
+      }
+    }, '1m')
+
   }
 
   init(root) {

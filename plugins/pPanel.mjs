@@ -27,6 +27,9 @@ export class pPanel {
     this.bpm_slider.setAttribute('max', 500)
     this.bpm_slider.setAttribute('value', Tone.Transport.bpm.value)
     this.bpm_slider.style.width = '100%'
+    this.bpm_slider.style.margin = '0'
+
+    this.bpm_slider.oninput =
     this.bpm_slider.onchange = function() {
       root.params.bpm = this.value
       Tone.Transport.bpm.value = root.params.bpm

@@ -26,6 +26,19 @@ export class pHat {
       source.start()
     }, '16n')
 
+    // Randomly silence
+    var measure = -1
+    Tone.Transport.scheduleRepeat(function(time){
+      measure++
+      if (measure % 3 === 0) return
+      if (Math.random() > 0.25) {
+        source.volume.value = 0
+      }
+      else {
+        source.volume.value = -1024
+      }
+    }, '1m')
+
   }
 
   init(root) {

@@ -38,14 +38,14 @@ export class pSynth {
     source.triggerAttackRelease('D4', sixteenth_note, 12 * sixteenth_note)
     source.triggerAttackRelease('F4', sixteenth_note, 13 * sixteenth_note)
 
-    // Every measure randomly connect
+    // Every measure randomly play
     Tone.Transport.scheduleRepeat(function(time){
 
       if (Math.random() > 0.9) {
-        source.volume.value = Math.round(Math.random() * 10)
+        source.volume.value = Math.round(Math.random() * 4)
       }
       else {
-        source.volume.value = -9999
+        source.volume.value = -1024
       }
 
     }, '1m')
