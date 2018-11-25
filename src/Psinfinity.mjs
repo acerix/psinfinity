@@ -11,6 +11,9 @@ export class Psinfinity {
     // Plugins
     this.plugins = options.hasOwnProperty('plugins') ? options.plugins : {}
 
+    // Instruments
+    this.instruments = options.hasOwnProperty('instruments') ? options.instruments : {}
+
     // Default parameters
     this.params = options.hasOwnProperty('params') ? options.params : {
 
@@ -40,18 +43,13 @@ export class Psinfinity {
     // Start drawing loop
     setTimeout(this.drawLoop.bind(this))
 
+    // Init instruments
+    if (typeof this.instruments === 'object') {
+      for (var i in this.instruments) if (typeof this.instruments[i].init === 'function') {
+        this.instruments[i].init(this)
+      }
+    }
 
-    // Create a Tone.js synth
-    // Tone.js test
-    var synth = new Tone.AMSynth().toMaster()
-    document.querySelectorAll('button').forEach(function(button){
-      button.addEventListener('mousedown', function(e){
-        synth.triggerAttack(e.target.textContent)
-      })
-      button.addEventListener('mouseup', function(e){
-        synth.triggerRelease()
-      })
-    })
   }
 
   // Main drawing loop
