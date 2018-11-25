@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang='en'>
 <head>
 <meta charset='utf-8'>
@@ -23,7 +23,15 @@ import {pBass} from './instruments/pBass.mjs'
 window.onload = function() {
   var psinfinity = new Psinfinity({
     plugins: {
-      'params': new sParams(),
+      'params': new sParams({
+        onChange: {
+          // Update bpm
+          'bpm': function(v) {
+            console.log('Beats per minute changed', v)
+            Tone.Transport.bpm.value = parseInt(v)
+          }
+        },
+      }),
     },
     instruments: {
       'kick': new pKick(),

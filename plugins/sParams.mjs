@@ -1,4 +1,4 @@
-'set strict'
+﻿'set strict'
 
 /** sParams Plugin: Handles URL parameters */
 

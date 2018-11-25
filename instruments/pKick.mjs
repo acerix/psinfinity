@@ -1,4 +1,4 @@
-'set strict'
+﻿'set strict'
 
 /** Psinfinity Kick Drum */
 
@@ -10,18 +10,28 @@ export class pKick {
 
     // Default options
     if (typeof options !== 'object') {
-      options = {}
+      options = {
+        audio_url: '../../sounds/kick.ogg',
+      }
     }
 
     // Default parameters
     this.params = options.hasOwnProperty('params') ? options.params : {}
 
+    // Create Tone.js player
+    this.source = new Tone.Player(options.audio_url).toMaster().sync()
+
+    //this.source.autostart = true
+    //this.source.loop = true
+    //this.source.loopStart = '1t'
+
+    this.source.start()
+
   }
 
   // Called with the top level object after it has been initialized
   init(root) {
-    var player = new Tone.Player('../../sounds/kick.ogg').toMaster()
-    player.autostart = true
+    console.log('pKick init()')
   }
 
 }

@@ -1,4 +1,4 @@
-'set strict'
+﻿'set strict'
 
 /** Psinfinity */
 
@@ -43,12 +43,20 @@ export class Psinfinity {
     // Start drawing loop
     setTimeout(this.drawLoop.bind(this))
 
+    // Init Tone.js transport
+    Tone.Transport.loop = true
+    Tone.Transport.loopEnd = '4n'
+    Tone.Transport.bpm.value = this.params.bpm
+
     // Init instruments
     if (typeof this.instruments === 'object') {
       for (var i in this.instruments) if (typeof this.instruments[i].init === 'function') {
         this.instruments[i].init(this)
       }
     }
+
+    // Start Tone.js transport
+    Tone.Transport.start('1m')
 
   }
 
@@ -65,7 +73,8 @@ export class Psinfinity {
 
   // Draw frame
   drawFrame() {
-    this.console.innerHTML = Math.random()
+    //this.console.textContent = Date.now()
+    this.console.textContent = Tone.Transport.position
   }
 
   // Update params after changing them
