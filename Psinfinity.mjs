@@ -37,37 +37,32 @@ export class Psinfinity {
       }
     }
 
-    // Jump into main loop
-    self.main(self)
+    // Start drawing loop
+    setTimeout(this.drawLoop.bind(this))
 
   }
 
-  // Main loop
-  main(self) {
+  // Main drawing loop
+  drawLoop() {
 
-    var callback = function() {
-      self.main(self)
-    }
-
-    // Draw
-    self.console.innerHTML = Math.random()
+    // Draw frame
+    this.drawFrame()
 
     // Loop after vsync
-    window.requestAnimationFrame(callback)
+    window.requestAnimationFrame(this.drawLoop.bind(this))
 
   }
 
-  // Stores new params after manually changing
+  // Draw frame
+  drawFrame() {
+    this.console.innerHTML = Math.random()
+  }
+
+  // Update params after changing them
   updateParams() {
     if (typeof this.plugins.params === 'object') {
       this.plugins.params.update()
     }
-  }
-
-  // Convert y to screen basis from gl basis
-  yToScreenBasis(y) {
-    //return y + this.canvas.centre[1]
-    return (y + this.canvas.centre[1]) / this.smallestScreenEdge() * this.params.sy
   }
 
 }
