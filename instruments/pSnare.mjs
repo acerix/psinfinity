@@ -1,8 +1,8 @@
 ﻿'set strict'
 
-/** Psinfinity Kick Drum */
+/** Psinfinity Snare Drum */
 
-export class pKick {
+export class pSnare {
 
   constructor(options) {
 
@@ -11,7 +11,7 @@ export class pKick {
     // Default options
     if (typeof options !== 'object') {
       options = {
-        audio_url: 'sounds/kick.ogg',
+        audio_url: 'sounds/snare.ogg',
       }
     }
 
@@ -21,16 +21,16 @@ export class pKick {
     // Create Tone.js player
     var source = new Tone.Player(options.audio_url).toMaster()
 
-    // Play on event 4th note
+    // Play on event 8th note
     Tone.Transport.scheduleRepeat(function(time){
-      source.start()
-    }, '4n')
+      source.start('8n')
+    }, '8n')
 
   }
 
   // Called with the top level object after it has been initialized
   init(root) {
-    console.log('pKick init()')
+    console.log('pSnare init()')
   }
 
 }
