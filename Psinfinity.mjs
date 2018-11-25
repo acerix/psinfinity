@@ -40,6 +40,18 @@ export class Psinfinity {
     // Start drawing loop
     setTimeout(this.drawLoop.bind(this))
 
+
+    // Create a Tone.js synth
+    // Tone.js test
+    var synth = new Tone.AMSynth().toMaster()
+    document.querySelectorAll('button').forEach(function(button){
+      button.addEventListener('mousedown', function(e){
+        synth.triggerAttack(e.target.textContent)
+      })
+      button.addEventListener('mouseup', function(e){
+        synth.triggerRelease()
+      })
+    })
   }
 
   // Main drawing loop
