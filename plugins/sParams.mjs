@@ -29,7 +29,6 @@ export class sParams {
 
   }
 
-  // Called with the top level object after it has been initialized
   init(root) {
 
     // Reference main params

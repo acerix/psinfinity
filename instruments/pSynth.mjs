@@ -52,7 +52,6 @@ export class pSynth {
 
   }
 
-  // Called with the top level object after it has been initialized
   init(root) {
     console.log('pSynth init()')
   }

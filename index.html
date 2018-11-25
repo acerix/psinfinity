@@ -15,6 +15,7 @@ import {Psinfinity} from './src/Psinfinity.mjs'
 
 // Plugins
 import {sParams} from './plugins/sParams.mjs'
+import {pPanel} from './plugins/pPanel.mjs'
 
 // Instruments
 import {pKick} from './instruments/pKick.mjs'
@@ -33,6 +34,7 @@ window.onload = function() {
           }
         },
       }),
+      'panel': new pPanel(),
     },
     instruments: {
       'kick': new pKick(),

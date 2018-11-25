@@ -48,22 +48,6 @@ export class Psinfinity {
     Tone.Transport.loopEnd = '1m'
     Tone.Transport.bpm.value = this.params.bpm
 
-    // Create bpm slider DOM element
-    this.bpm_slider = document.createElement('input')
-    this.bpm_slider.setAttribute('type', 'range')
-    this.bpm_slider.setAttribute('step', 1)
-    this.bpm_slider.setAttribute('min', 50)
-    this.bpm_slider.setAttribute('max', 500)
-    this.bpm_slider.setAttribute('value', this.params.bpm)
-    this.bpm_slider.style.width = '80%'
-    this.bpm_slider.onchange = function() {
-      self.params.bpm = this.value
-      Tone.Transport.bpm.value = self.params.bpm
-      self.updateParams()
-    }
-    document.body.appendChild(this.bpm_slider)
-
-
     // Init instruments
     if (typeof this.instruments === 'object') {
       for (var i in this.instruments) if (typeof this.instruments[i].init === 'function') {
