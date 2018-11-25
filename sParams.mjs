@@ -11,6 +11,11 @@ export class sParams {
     // Parameter values
     this.params = {}
 
+    // Default options
+    if (typeof options !== 'object') {
+      options = {}
+    }
+
     // Callbacks for each param when changed
     this.onChange = options.hasOwnProperty('onChange') ? options.onChange : {}
 
@@ -24,11 +29,11 @@ export class sParams {
 
   }
 
-  // Called with the top level object (sWebGL) after it has been initialized
-  init(swgl) {
+  // Called with the top level object after it has been initialized
+  init(root) {
 
     // Reference main params
-    this.params = swgl.params
+    this.params = root.params
 
     // Update URL hash on init
     this.update()
@@ -106,4 +111,3 @@ export class sParams {
   }
 
 }
-
