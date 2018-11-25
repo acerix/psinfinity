@@ -11,7 +11,7 @@ export class pKick {
     // Default options
     if (typeof options !== 'object') {
       options = {
-        audio_url: 'sounds/kick.ogg',
+        audio_url: 'sounds/kick.oggx',
       }
     }
 
@@ -19,14 +19,9 @@ export class pKick {
     this.params = options.hasOwnProperty('params') ? options.params : {}
 
     // Create Tone.js player
-    this.source = new Tone.Player(
-      options.audio_url,
-      function(player) {
-        player.sync()
-        player.start()
-      }
-    ).toMaster()
-
+    this.source = new Tone.Player(options.audio_url).toMaster()
+    this.source.sync()
+    this.source.start()
   }
 
   // Called with the top level object after it has been initialized
