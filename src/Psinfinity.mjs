@@ -55,8 +55,10 @@ export class Psinfinity {
       }
     }
 
-    // Start Tone.js transport
-    Tone.Transport.start('1m')
+    // Start Tone.js transport when buffers are loaded
+    Tone.Buffer.on('load', function(){
+      Tone.Transport.start()
+    })
 
   }
 

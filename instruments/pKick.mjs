@@ -19,13 +19,13 @@ export class pKick {
     this.params = options.hasOwnProperty('params') ? options.params : {}
 
     // Create Tone.js player
-    this.source = new Tone.Player(options.audio_url).toMaster().sync()
-
-    //this.source.autostart = true
-    //this.source.loop = true
-    //this.source.loopStart = '1t'
-
-    this.source.start()
+    this.source = new Tone.Player(
+      options.audio_url,
+      function(player) {
+        player.sync()
+        player.start()
+      }
+    ).toMaster()
 
   }
 
