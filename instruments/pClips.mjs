@@ -16,7 +16,13 @@ export class pClips {
           energy: 'sounds/clips/energy.ogg',
           galaxies: 'sounds/clips/galaxies.ogg',
           time: 'sounds/clips/time.ogg',
-          wine: 'sounds/clips/wine.ogg',
+          burn: 'sounds/clips/burn.ogg',
+          disintegrate: 'sounds/clips/disintegrate.ogg',
+          dot: 'sounds/clips/dot.ogg',
+          home: 'sounds/clips/home.ogg',
+          snack: 'sounds/clips/snack.ogg',
+          syrup: 'sounds/clips/syrup.ogg',
+          vibration: 'sounds/clips/vibration.ogg',
         }
       }
     }
@@ -34,6 +40,7 @@ export class pClips {
     Tone.Transport.scheduleRepeat(function(time){
 
       if (Math.random() > 0.9) {
+        sources.stopAll()
         sources.get( self.getRandomClip() ).start()
       }
 
