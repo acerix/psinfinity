@@ -39,6 +39,7 @@ export class pSynth {
     source.triggerAttackRelease('F4', sixteenth_note, 13 * sixteenth_note)
 
     // Every measure randomly play
+    source.volume.value = -1024
     Tone.Transport.scheduleRepeat(function(time){
 
       if (Math.random() > 0.9) {

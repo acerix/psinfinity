@@ -23,15 +23,16 @@ export class pSnare {
 
     // Play on event 8th note
     Tone.Transport.scheduleRepeat(function(time){
-      source.start('8n')
-    }, '8n')
+      source.start('+8n')
+    }, '4n')
 
     // Randomly silence
     var measure = -1
+    source.volume.value = -1024
     Tone.Transport.scheduleRepeat(function(time){
       measure++
-      if (measure % 3 === 0) return
-      if (Math.random() > 0.2) {
+      if (measure % 8 !== 2) return
+      if (Math.random() > 0.9) {
         source.volume.value = 0
       }
       else {

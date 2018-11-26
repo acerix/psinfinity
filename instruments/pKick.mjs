@@ -30,7 +30,7 @@ export class pKick {
     var measure = -1
     Tone.Transport.scheduleRepeat(function(time){
       measure++
-      if (measure % 3 === 0) return
+      if (measure % 4 !== 1) return
       if (Math.random() > 0.1) {
         source.volume.value = 0
       }

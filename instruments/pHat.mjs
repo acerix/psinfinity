@@ -28,9 +28,10 @@ export class pHat {
 
     // Randomly silence
     var measure = -1
+    source.volume.value = -1024
     Tone.Transport.scheduleRepeat(function(time){
       measure++
-      if (measure % 3 === 0) return
+      if (measure % 4 !== 2) return
       if (Math.random() > 0.25) {
         source.volume.value = 0
       }
