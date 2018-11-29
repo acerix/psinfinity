@@ -36,6 +36,7 @@ export class sParams {
 
     // Update URL hash on init
     this.update()
+
   }
 
   // Update the URL hash with the parameters
@@ -48,8 +49,21 @@ export class sParams {
     var new_params = this._unserialize( window.location.hash.substr(1) )
     for (var i in new_params) {
 
-      // Only allow numbers, convert to int if whole otherwise float
-      this.params[i] = new_params[i] % 1 === 0 ? parseInt(new_params[i], 10) : parseFloat(new_params[i])
+      // ?
+      if (!(i in new_params)) {
+      }
+      // Int
+      else if (new_params[i] % 1 === 0) {
+        this.params[i] = parseInt(new_params[i], 10)
+      }
+      // Float
+      else if (new_params[i].includes('.')) {
+        this.params[i] = parseFloat(new_params[i])
+      }
+      // Str
+      else {
+        this.params[i] = new_params[i]
+      }
 
       if (runCallbacks && i in this.onChange) {
         this.onChange[i](this.params[i])
@@ -100,6 +114,7 @@ export class sParams {
   // Unserialize params from a string
   // based on https://stackoverflow.com/a/26849194
   _unserialize(s) {
+    if (s.length === 0) return {}
     return s.split('&').reduce(function (params, param) {
       var paramSplit = param.split('=').map(function (value) {
         return decodeURIComponent(value.replace(/\\+/g, ' '))

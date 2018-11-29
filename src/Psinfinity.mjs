@@ -2,11 +2,15 @@
 
 /** Psinfinity */
 
+const __Psinfinity_version__ = '0.0.1'
+
 export class Psinfinity {
 
   constructor(options) {
 
     var self = this
+
+    console.log('%c * Psinfinity v' + __Psinfinity_version__ + ' * ', 'background: #000; color: #fff;')
 
     // Plugins
     this.plugins = options.hasOwnProperty('plugins') ? options.plugins : {}
@@ -18,7 +22,13 @@ export class Psinfinity {
     this.params = options.hasOwnProperty('params') ? options.params : {
 
       // Beats per minute
-      bpm: 140,
+      bpm: self.rand(80, 230),
+
+      // Key: C,d,D,e,E,F,g,G,a,A,b,B
+      key: self.intToNote(self.rand(0, 12)),
+
+      // Random seed
+      seed: btoa(Math.seedrandom()).substr(0, 8),
 
     }
 
@@ -28,6 +38,13 @@ export class Psinfinity {
         this.params[i] = this.plugins.params.params[i]
       }
     }
+
+    // Seed the random number generator
+    Math.seedrandom(this.params.seed)
+
+    // Key (integer)
+    this.key = self.noteToInt(this.params.key)
+    this.params.key = self.intToNote(this.key)
 
     // Create console DOM element
     this.console = document.createElement('p')
@@ -85,6 +102,36 @@ export class Psinfinity {
     if (typeof this.plugins.params === 'object') {
       this.plugins.params.update()
     }
+  }
+
+  // Get a random integer
+  rand(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min
+  }
+
+  // Return an index of note names ()
+  getNoteNameChars() {
+    return 'CdDeEFgGbB'.split('')
+  }
+
+  // Convert a note name char to an integer
+  noteToInt(note_name) {
+    var note_name_chars = this.getNoteNameChars()
+    for (var i in note_name_chars) {
+      if (note_name_chars[i] === note_name) {
+        return i
+      }
+    }
+    return 0
+  }
+
+  // Convert an integer (0..12) to the note name char
+  intToNote(i) {
+    var note_name_chars = this.getNoteNameChars()
+    if (i in note_name_chars) {
+      return note_name_chars[i]
+    }
+    return 'C'
   }
 
 }
