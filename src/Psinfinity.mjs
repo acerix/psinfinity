@@ -42,12 +42,15 @@ export class Psinfinity {
     // Seed the random number generator
     this.prng = new alea(this.params.seed)
 
-    // @todo each instrument should get the seed and seed it's own prng for consistency
+    // @todo each instrument should get the seed and seed it's own prng for consistency, leave random() alone!
     Math.random = this.prng
 
     // Key (integer)
     this.key = self.noteToInt(this.params.key)
+
+    // Fix invalid key
     this.params.key = self.intToNote(this.key)
+    this.updateParams()
 
     // Create console DOM element
     this.console = document.createElement('p')
