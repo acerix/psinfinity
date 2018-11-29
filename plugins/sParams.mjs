@@ -49,11 +49,10 @@ export class sParams {
     var new_params = this._unserialize( window.location.hash.substr(1) )
     for (var i in new_params) {
 
-      // ?
-      if (!(i in new_params)) {
-      }
+      var old_param = this.params[i]
+
       // Int
-      else if (new_params[i] % 1 === 0) {
+      if (new_params[i] % 1 === 0) {
         this.params[i] = parseInt(new_params[i], 10)
       }
       // Float
@@ -65,7 +64,7 @@ export class sParams {
         this.params[i] = new_params[i]
       }
 
-      if (runCallbacks && i in this.onChange) {
+      if (runCallbacks && i in this.onChange && this.params[i] !== old_param) {
         this.onChange[i](this.params[i])
       }
     }

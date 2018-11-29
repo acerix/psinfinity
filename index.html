@@ -21,6 +21,7 @@ body {
 <body>
 <script src='//cdnjs.cloudflare.com/ajax/libs/tone/13.3.11/Tone.min.js'></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.4/seedrandom.min.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.4/lib/alea.min.js'></script>
 <script type='module'>
 'set strict'
 
@@ -47,7 +48,15 @@ window.onload = function() {
         onChange: {
           'bpm': function(v) {
             Tone.Transport.bpm.value = parseInt(v)
-          }
+          },
+          'key': function(v) {
+            psinfinity.key = psinfinity.noteToInt(v)
+            psinfinity.params.key = psinfinity.intToNote(psinfinity.key)
+            psinfinity.updateParams()
+          },
+          'seed': function(v) {
+            location.reload()
+          },
         },
       }),
       'panel': new pPanel(),

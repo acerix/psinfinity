@@ -23,8 +23,8 @@ export class pFX {
     // Default parameters
     this.params = options.hasOwnProperty('params') ? options.params : {}
 
-    // Store a list of all clips
-    this.clips = Object.keys(options.audio_urls)
+    // Store a list of all FX
+    this.FX = Object.keys(options.audio_urls)
 
     // Create Tone.js player
     var sources = new Tone.Players(options.audio_urls).toMaster()
@@ -41,11 +41,11 @@ export class pFX {
   }
 
   init(root) {
-    console.log('pClips init()')
+    console.log('pFX init()')
   }
 
   getRandomClip() {
-    return this.clips[ this.clips.length * Math.random() << 0 ]
+    return this.FX[ this.FX.length * Math.random() << 0 ]
   }
 
 }

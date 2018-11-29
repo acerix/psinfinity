@@ -28,7 +28,7 @@ export class Psinfinity {
       key: self.intToNote(self.rand(0, 12)),
 
       // Random seed
-      seed: btoa(Math.seedrandom()).substr(0, 8),
+      seed: btoa(Math.seedrandom()).substr(0, 12),
 
     }
 
@@ -40,7 +40,10 @@ export class Psinfinity {
     }
 
     // Seed the random number generator
-    Math.seedrandom(this.params.seed)
+    this.prng = new alea(this.params.seed)
+
+    // @todo each instrument should get the seed and seed it's own prng for consistency
+    Math.random = this.prng
 
     // Key (integer)
     this.key = self.noteToInt(this.params.key)
@@ -111,7 +114,7 @@ export class Psinfinity {
 
   // Return an index of note names ()
   getNoteNameChars() {
-    return 'CdDeEFgGbB'.split('')
+    return 'CdDeEFgGaAbB'.split('')
   }
 
   // Convert a note name char to an integer
