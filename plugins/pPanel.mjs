@@ -17,7 +17,6 @@ export class pPanel {
   }
 
   init(root) {
-    console.log('pPanel init()')
 
     // Create bpm slider DOM element
     this.bpm_slider = document.createElement('input')

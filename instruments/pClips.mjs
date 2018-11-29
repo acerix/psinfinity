@@ -39,7 +39,7 @@ export class pClips {
     // Every 4 measures randomly play
     Tone.Transport.scheduleRepeat(function(time){
 
-      if (Math.random() > 0.9) {
+      if (Math.random() > 0.95) {
         sources.stopAll()
         sources.get( self.getRandomClip() ).start()
       }

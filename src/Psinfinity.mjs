@@ -22,7 +22,7 @@ export class Psinfinity {
     this.params = options.hasOwnProperty('params') ? options.params : {
 
       // Beats per minute
-      bpm: self.rand(80, 230),
+      bpm: self.rand(120, 160), // 80..230?
 
       // Key: C,d,D,e,E,F,g,G,a,A,b,B
       key: self.intToNote(self.rand(0, 12)),
