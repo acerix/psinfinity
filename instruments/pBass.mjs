@@ -18,12 +18,8 @@ export class pBass {
     // Default parameters
     this.params = options.hasOwnProperty('params') ? options.params : {}
 
-    // Create Tone.js synth
-    this.source = new Tone.FMSynth().toMaster().sync()
-
     // Randomly silence
     var measure = -1
-    this.source.volume.value = -1024
     Tone.Transport.scheduleRepeat(function(time){
       measure++
       if (measure % 4 !== 0) return
@@ -38,7 +34,17 @@ export class pBass {
   }
 
   init(root) {
-    console.log('pBass init()')
+    this.createSource(root)
+  }
+
+  createSource(root) {
+
+    if (typeof this.source === 'object') {
+      this.source.dispose()
+    }
+
+    // Create Tone.js synth
+    this.source = new Tone.FMSynth().toMaster().sync()
 
     var sixteenth_note = Tone.Time('16n')
 
@@ -50,7 +56,7 @@ export class pBass {
     // 4
     this.source.triggerAttackRelease(getNoteFrequency(root.key, 2), sixteenth_note, 5 * sixteenth_note)
     this.source.triggerAttackRelease(getNoteFrequency(root.key + 3, 2), sixteenth_note, 6 * sixteenth_note)
-    this.source.triggerAttackRelease(getNoteFrequency(root.key + 3, 2), sixteenth_note, 7 * sixteenth_note)
+    this.source.triggerAttackRelease(getNoteFrequency(root.key + 3, 3), sixteenth_note, 7 * sixteenth_note)
 
     // 8
     this.source.triggerAttackRelease(getNoteFrequency(root.key, 2), sixteenth_note, 9 * sixteenth_note)
@@ -59,7 +65,7 @@ export class pBass {
 
     // 12
     // 13
-    this.source.triggerAttackRelease(getNoteFrequency(root.key, 2), sixteenth_note, 14 * sixteenth_note)
+    this.source.triggerAttackRelease(getNoteFrequency(root.key, 3), sixteenth_note, 14 * sixteenth_note)
     this.source.triggerAttackRelease(getNoteFrequency(root.key - 2, 2), sixteenth_note, 15 * sixteenth_note)
 
   }

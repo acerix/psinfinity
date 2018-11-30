@@ -48,10 +48,6 @@ export class pClips {
 
   }
 
-  init(root) {
-    console.log('pClips init()')
-  }
-
   getRandomClip() {
     return this.clips[ this.clips.length * Math.random() << 0 ]
   }

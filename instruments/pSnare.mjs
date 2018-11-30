@@ -42,8 +42,4 @@ export class pSnare {
 
   }
 
-  init(root) {
-    console.log('pSnare init()')
-  }
-
 }

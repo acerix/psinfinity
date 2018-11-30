@@ -74,7 +74,12 @@ window.onload = function() {
                 panel.key_slider.value = root.key
               }
             }
-            location.reload()
+            if (root.instruments.bass) {
+              root.instruments.bass.createSource(root)
+            }
+            if (root.instruments.synth) {
+              root.instruments.synth.createSource(root)
+            }
           },
           'seed': function(v, root) {
             location.reload()

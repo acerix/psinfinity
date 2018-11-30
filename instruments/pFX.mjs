@@ -40,10 +40,6 @@ export class pFX {
 
   }
 
-  init(root) {
-    console.log('pFX init()')
-  }
-
   getRandomClip() {
     return this.FX[ this.FX.length * Math.random() << 0 ]
   }

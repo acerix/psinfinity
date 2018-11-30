@@ -41,8 +41,4 @@ export class pKick {
 
   }
 
-  init(root) {
-    console.log('pKick init()')
-  }
-
 }

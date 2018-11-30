@@ -47,8 +47,4 @@ export class pHat {
 
   }
 
-  init(root) {
-    console.log('pHat init()')
-  }
-
 }

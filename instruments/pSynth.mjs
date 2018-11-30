@@ -18,16 +18,8 @@ export class pSynth {
     // Default parameters
     this.params = options.hasOwnProperty('params') ? options.params : {}
 
-    // Create Tone.js synth
-    this.source = new Tone.Synth({
-      oscillator: {
-        type: 'sawtooth'
-      }
-    }).toMaster().sync()
-
     // Randomly silence
     var measure = -1
-    this.source.volume.value = -1024
     Tone.Transport.scheduleRepeat(function(time){
       measure++
       if (Math.random() > 0.9) {
@@ -41,7 +33,21 @@ export class pSynth {
   }
 
   init(root) {
-    console.log('pSynth init()')
+    this.createSource(root)
+  }
+
+  createSource(root) {
+
+    if (typeof this.source === 'object') {
+      this.source.dispose()
+    }
+
+    // Create Tone.js synth
+    this.source = new Tone.Synth({
+      oscillator: {
+        type: 'sawtooth'
+      }
+    }).toMaster().sync()
 
     var sixteenth_note = Tone.Time('16n')
 
