@@ -55,7 +55,7 @@ export class pBass {
     // 8
     this.source.triggerAttackRelease(getNoteFrequency(root.key, 2), sixteenth_note, 9 * sixteenth_note)
     this.source.triggerAttackRelease(getNoteFrequency(root.key - 2, 2), sixteenth_note, 10 * sixteenth_note)
-    this.source.triggerAttackRelease(getNoteFrequency(root.key, 0), sixteenth_note, 11 * sixteenth_note)
+    this.source.triggerAttackRelease(getNoteFrequency(root.key, 2), sixteenth_note, 11 * sixteenth_note)
 
     // 12
     // 13

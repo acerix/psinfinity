@@ -30,7 +30,7 @@ export class pSynth {
     this.source.volume.value = -1024
     Tone.Transport.scheduleRepeat(function(time){
       measure++
-      if (Math.random() > 0.9 || 1) {
+      if (Math.random() > 0.9) {
         self.source.volume.value = 0
       }
       else {
@@ -46,14 +46,14 @@ export class pSynth {
     var sixteenth_note = Tone.Time('16n')
 
     // The melody
-    this.source.triggerAttackRelease(getNoteFrequency(root.key, 3), sixteenth_note, 1 * sixteenth_note)
-    this.source.triggerAttackRelease(getNoteFrequency(root.key - 3, 3), sixteenth_note, 2 * sixteenth_note)
-    this.source.triggerAttackRelease(getNoteFrequency(root.key + 5, 2), sixteenth_note * 3 / 2, 3 * sixteenth_note)
+    this.source.triggerAttackRelease(getNoteFrequency(root.key, 4), sixteenth_note, 1 * sixteenth_note)
+    this.source.triggerAttackRelease(getNoteFrequency(root.key + 3, 4), sixteenth_note, 2 * sixteenth_note)
+    this.source.triggerAttackRelease(getNoteFrequency(root.key + 5, 4), sixteenth_note * 3 / 2, 3 * sixteenth_note)
 
-    this.source.triggerAttackRelease(getNoteFrequency(root.key, 3), sixteenth_note, 9 * sixteenth_note)
-    this.source.triggerAttackRelease(getNoteFrequency(root.key - 3, 3), sixteenth_note * 2, 10 * sixteenth_note)
-    this.source.triggerAttackRelease(getNoteFrequency(root.key, 3), sixteenth_note, 12 * sixteenth_note)
-    this.source.triggerAttackRelease(getNoteFrequency(root.key + 5, 2), sixteenth_note, 13 * sixteenth_note)
+    this.source.triggerAttackRelease(getNoteFrequency(root.key, 4), sixteenth_note, 9 * sixteenth_note)
+    this.source.triggerAttackRelease(getNoteFrequency(root.key - 2, 4), sixteenth_note * 2, 10 * sixteenth_note)
+    this.source.triggerAttackRelease(getNoteFrequency(root.key + 5, 4), sixteenth_note, 12 * sixteenth_note)
+    this.source.triggerAttackRelease(getNoteFrequency(root.key, 4), sixteenth_note, 13 * sixteenth_note)
 
   }
 

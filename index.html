@@ -16,6 +16,9 @@ body {
   background-color: #202;
   color: #ece;
 }
+a {
+  color: #fff;
+}
 </style>
 </head>
 <body>
@@ -46,15 +49,34 @@ window.onload = function() {
     plugins: {
       'params': new sParams({
         onChange: {
-          'bpm': function(v) {
-            Tone.Transport.bpm.value = parseInt(v)
+          'bpm': function(v, root) {
+            Tone.Transport.bpm.value = v = parseInt(v, 10)
+            if (root.plugins.panel) {
+              var panel = root.plugins.panel
+              if (panel.bpm_display) {
+                panel.bpm_display.textContent = v
+              }
+              if (panel.bpm_slider) {
+                panel.bpm_slider.value = v
+              }
+            }
           },
-          'key': function(v) {
-            psinfinity.key = psinfinity.noteToInt(v)
-            psinfinity.params.key = psinfinity.intToNote(psinfinity.key)
-            psinfinity.updateParams()
+          'key': function(v, root) {
+            root.key = root.noteToInt(v)
+            root.params.key = root.intToNote(root.key)
+            root.updateParams()
+            if (root.plugins.panel) {
+              var panel = root.plugins.panel
+              if (panel.key_display) {
+                panel.key_display.textContent = root.intToNoteName(root.key)
+              }
+              if (panel.key_slider) {
+                panel.key_slider.value = root.key
+              }
+            }
+            location.reload()
           },
-          'seed': function(v) {
+          'seed': function(v, root) {
             location.reload()
           },
         },
@@ -74,6 +96,5 @@ window.onload = function() {
 }
 
 </script>
-<a href="./">Randomize</a>
 </body>
 </html>

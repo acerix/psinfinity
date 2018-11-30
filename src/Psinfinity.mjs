@@ -110,12 +110,19 @@ export class Psinfinity {
     }
   }
 
+  // Update one param after changing it
+  setParam(param_id, new_value) {
+    if (typeof this.plugins.params === 'object') {
+      this.plugins.params.set(param_id, new_value)
+    }
+  }
+
   // Get a random integer
   rand(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min
   }
 
-  // Return an index of note names ()
+  // Return an index of note name chars
   getNoteNameChars() {
     return 'CdDeEFgGaAbB'.split('')
   }
@@ -125,7 +132,7 @@ export class Psinfinity {
     var note_name_chars = this.getNoteNameChars()
     for (var i in note_name_chars) {
       if (note_name_chars[i] === note_name) {
-        return i
+        return +i
       }
     }
     return 0
@@ -138,6 +145,19 @@ export class Psinfinity {
       return note_name_chars[i]
     }
     return 'C'
+  }
+
+  // Return an index of note names
+  getNoteNames() {
+    return 'C,D♭,D,E♭,E,F,G♭,G,A♭,A,B♭,B'.split(',')
+  }
+
+  // Convert an integer (0..12) to the note name
+  intToNoteName(i) {
+    var note_name_chars = this.getNoteNames()
+    if (i in note_name_chars) {
+      return note_name_chars[i]
+    }
   }
 
 }

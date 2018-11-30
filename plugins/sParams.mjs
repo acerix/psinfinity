@@ -31,6 +31,9 @@ export class sParams {
 
   init(root) {
 
+    // Reference to root
+    this.root = root
+
     // Reference main params
     this.params = root.params
 
@@ -48,7 +51,6 @@ export class sParams {
   parse(runCallbacks) {
     var new_params = this._unserialize( window.location.hash.substr(1) )
     for (var i in new_params) {
-
       var old_param = this.params[i]
 
       // Int
@@ -65,8 +67,17 @@ export class sParams {
       }
 
       if (runCallbacks && i in this.onChange && this.params[i] !== old_param) {
-        this.onChange[i](this.params[i])
+        this.onChange[i](this.params[i], this.root)
       }
+    }
+  }
+
+  // Change a param to the new value
+  set(param_id, new_value) {
+    var old_param = this.params[param_id]
+    this.params[param_id] = new_value
+    if (param_id in this.onChange && this.params[param_id] !== old_param) {
+      this.onChange[param_id](this.params[param_id], this.root)
     }
   }
 
