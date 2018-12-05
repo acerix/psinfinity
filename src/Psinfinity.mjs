@@ -2,7 +2,7 @@
 
 /** Psinfinity */
 
-const __Psinfinity_version__ = '0.0.1'
+const __Psinfinity_version__ = '0.0.2'
 
 export class Psinfinity {
 
@@ -24,7 +24,7 @@ export class Psinfinity {
       // Beats per minute
       bpm: self.rand(120, 160), // 80..230?
 
-      // Key: C,d,D,e,E,F,g,G,a,A,b,B
+      // Key: a,A,b,B,C,d,D,e,E,F,g,G
       key: self.intToNote(self.rand(0, 12)),
 
       // Random seed
@@ -124,7 +124,7 @@ export class Psinfinity {
 
   // Return an index of note name chars
   getNoteNameChars() {
-    return 'CdDeEFgGaAbB'.split('')
+    return 'AbBCdDeEFgGa'.split('')
   }
 
   // Convert a note name char to an integer
@@ -144,12 +144,12 @@ export class Psinfinity {
     if (i in note_name_chars) {
       return note_name_chars[i]
     }
-    return 'C'
+    return 'A'
   }
 
   // Return an index of note names
   getNoteNames() {
-    return 'C,D♭,D,E♭,E,F,G♭,G,A♭,A,B♭,B'.split(',')
+    return 'A,A♯/B♭,B,C,C♯/D♭,D,D♯/E♭,E,F,F♯/G♭,G,G♯/A♭'.split(',')
   }
 
   // Convert an integer (0..12) to the note name
