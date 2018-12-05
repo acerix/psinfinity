@@ -3,7 +3,6 @@
 /** Psinfinity Bass Synth */
 
 import {getNoteFrequency} from '../lib/pSolfege.mjs'
-import {pScales} from '../lib/pScales.mjs'
 
 export class pBass {
 
@@ -36,18 +35,11 @@ export class pBass {
 
   init(root) {
     this.createSource(root)
-
-    var scales = new pScales()
-    var scale_name = scales.random_scale()
-    this.notes = scales.note_positions(scale_name)
-
-    console.log('Bass(' + scale_name + ')')
   }
 
   createSource(root) {
 
     if (typeof this.source === 'object') {
-      volume = this.source.volume.value
       this.source.dispose()
     }
 

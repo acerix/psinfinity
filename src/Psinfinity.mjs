@@ -2,6 +2,8 @@
 
 /** Psinfinity */
 
+import {pScales} from '../lib/pScales.mjs'
+
 const __Psinfinity_version__ = '0.0.2'
 
 export class Psinfinity {
@@ -18,6 +20,9 @@ export class Psinfinity {
     // Instruments
     this.instruments = options.hasOwnProperty('instruments') ? options.instruments : {}
 
+    // Scales
+    this.pScales = new pScales()
+
     // Default parameters
     this.params = options.hasOwnProperty('params') ? options.params : {
 
@@ -26,6 +31,9 @@ export class Psinfinity {
 
       // Key: a,A,b,B,C,d,D,e,E,F,g,G
       key: self.intToNote(self.rand(0, 12)),
+
+      // Scale: major, minor, etc
+      scale: this.pScales.random_scale(),
 
       // Random seed
       seed: btoa(Math.seedrandom()).substr(0, 12),

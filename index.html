@@ -81,6 +81,14 @@ window.onload = function() {
               root.instruments.synth.createSource(root)
             }
           },
+          'scale': function(v, root) {
+            if (v in root.pScales.scales) {
+              location.reload()
+            }
+            else {
+              console.error('Scale "' + v + '" is not defined')
+            }
+          },
           'seed': function(v, root) {
             location.reload()
           },

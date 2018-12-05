@@ -3,7 +3,6 @@
 /** Psinfinity Melody Synth */
 
 import {getNoteFrequency} from '../lib/pSolfege.mjs'
-import {pScales} from '../lib/pScales.mjs'
 
 export class pSynth {
 
@@ -35,12 +34,6 @@ export class pSynth {
 
   init(root) {
     this.createSource(root)
-
-    var scales = new pScales()
-    var scale_name = scales.random_scale()
-    this.notes = scales.note_positions(scale_name)
-
-    console.log('Synth(' + scale_name + ')')
   }
 
   createSource(root) {

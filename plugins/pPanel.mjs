@@ -47,6 +47,8 @@ export class pPanel {
 
 
 
+
+
     // BPM Slider
 
     var tr = document.createElement('tr')
@@ -77,6 +79,25 @@ export class pPanel {
     td.appendChild(this.render_key_slider(root))
 
     document.body.appendChild(this.table)
+
+
+
+    // Scale
+
+    var tr = document.createElement('tr')
+    this.tbody.appendChild(tr)
+
+    var td = document.createElement('td')
+    td.style.textAlign = 'center'
+    td.textContent = 'Scale:'
+    tr.appendChild(td)
+
+    this.scale_display = document.createElement('td')
+    this.scale_display.textContent = root.params.scale.split('_').join(' ')
+    tr.appendChild(this.scale_display)
+
+
+
 
   }
 
