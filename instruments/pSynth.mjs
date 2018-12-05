@@ -49,12 +49,17 @@ export class pSynth {
       this.source.dispose()
     }
 
+    // Create Tone.js pan/vol
+    this.panvol = new Tone.PanVol(Math.random() - 0.5, -16)
+
     // Create Tone.js synth
     this.source = new Tone.Synth({
       oscillator: {
         type: 'sawtooth'
       }
-    }).toMaster().sync()
+    })
+      .chain(this.panvol, Tone.Master)
+      .sync()
 
     var sixteenth_note = Tone.Time('16n')
 

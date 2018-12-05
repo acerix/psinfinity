@@ -33,8 +33,12 @@ export class pClips {
     // Store a list of all clips
     this.clips = Object.keys(options.audio_urls)
 
+    // Create Tone.js pan/vol
+    this.panvol = new Tone.PanVol(Math.random() - 0.5, -16)
+
     // Create Tone.js player
-    var sources = new Tone.Players(options.audio_urls).toMaster()
+    var sources = new Tone.Players(options.audio_urls)
+      .chain(this.panvol, Tone.Master)
 
     // Every 4 measures randomly play
     Tone.Transport.scheduleRepeat(function(time){

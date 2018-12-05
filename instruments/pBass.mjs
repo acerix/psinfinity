@@ -46,16 +46,18 @@ export class pBass {
 
   createSource(root) {
 
-    var volume = -1024
-
     if (typeof this.source === 'object') {
       volume = this.source.volume.value
       this.source.dispose()
     }
 
+    // Create Tone.js pan/vol
+    this.panvol = new Tone.PanVol(Math.random() - 0.5, -16)
+
     // Create Tone.js synth
-    this.source = new Tone.FMSynth().toMaster().sync()
-    this.source.volume.value = volume
+    this.source = new Tone.FMSynth()
+      .chain(this.panvol, Tone.Master)
+      .sync()
 
     var sixteenth_note = Tone.Time('16n')
 

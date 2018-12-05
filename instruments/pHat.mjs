@@ -18,8 +18,12 @@ export class pHat {
     // Default parameters
     this.params = options.hasOwnProperty('params') ? options.params : {}
 
+    // Create Tone.js volume control
+    this.volume = new Tone.Volume(-16)
+
     // Create Tone.js player
-    var source = new Tone.Player(options.audio_url).toMaster()
+    var source = new Tone.Player(options.audio_url)
+      .chain(this.volume, Tone.Master)
 
     // Play on most 16th notes
     var note = -1
