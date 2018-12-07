@@ -70,7 +70,7 @@ export class pBass {
     for (var i=0; i<16; i++) {
 
       // Rest to make space for the kick
-      if (i % 4 == 0) {
+      if (i % 4 === 0) {
         continue
       }
 

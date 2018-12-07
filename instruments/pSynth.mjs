@@ -78,7 +78,7 @@ export class pSynth {
       }
 
       // Move this many notes down or up the scale
-      scale_position += root.rand(-2, 2)
+      scale_position += root.rand(-5, 5)
 
       current_note = getRelativeNoteFrequency(root.key, base_octave, scale_note_offsets, scale_position)
 
