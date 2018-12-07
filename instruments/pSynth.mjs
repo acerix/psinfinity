@@ -2,7 +2,7 @@
 
 /** Psinfinity Melody Synth */
 
-import {getNoteFrequency} from '../lib/pSolfege.mjs'
+import {getNoteFrequency,getRelativeNoteFrequency} from '../lib/pSolfege.mjs'
 
 export class pSynth {
 
@@ -54,17 +54,41 @@ export class pSynth {
       .chain(this.panvol, Tone.Master)
       .sync()
 
-    var sixteenth_note = Tone.Time('16n')
+
 
     // The melody
-    this.source.triggerAttackRelease(getNoteFrequency(root.key, 4), sixteenth_note, 1 * sixteenth_note)
-    this.source.triggerAttackRelease(getNoteFrequency(root.key + 3, 4), sixteenth_note, 2 * sixteenth_note)
-    this.source.triggerAttackRelease(getNoteFrequency(root.key + 5, 4), sixteenth_note * 3 / 2, 3 * sixteenth_note)
 
-    this.source.triggerAttackRelease(getNoteFrequency(root.key, 4), sixteenth_note, 9 * sixteenth_note)
-    this.source.triggerAttackRelease(getNoteFrequency(root.key - 2, 4), sixteenth_note * 2, 10 * sixteenth_note)
-    this.source.triggerAttackRelease(getNoteFrequency(root.key + 5, 4), sixteenth_note, 12 * sixteenth_note)
-    this.source.triggerAttackRelease(getNoteFrequency(root.key, 4), sixteenth_note, 13 * sixteenth_note)
+
+    var sixteenth_note_time = Tone.Time('16n')
+
+    var scale_note_offsets = root.pScales.scales[root.params.scale]
+
+    var scale_position = 0
+    var current_note = getNoteFrequency(root.key)
+
+    var rest_freqency = 1 - Math.random() / 4
+    var base_octave = root.rand(3, 5)
+
+    // For each 16th note
+    for (var i=0; i<16; i++) {
+
+      // Rest sometimes
+      if (Math.random() > rest_freqency) {
+        continue
+      }
+
+      // Move this many notes down or up the scale
+      scale_position += root.rand(-2, 2)
+
+      current_note = getRelativeNoteFrequency(root.key, base_octave, scale_note_offsets, scale_position)
+
+      this.source.triggerAttackRelease(
+        current_note,
+        sixteenth_note_time,
+        i * sixteenth_note_time
+      )
+    }
+
 
   }
 
