@@ -36,7 +36,7 @@ export class Psinfinity {
       scale: this.pScales.random_scale(),
 
       // Random seed
-      seed: btoa(Math.seedrandom()).substring(0, 2),
+      seed: btoa(Math.seedrandom()).substring(0, 12),
 
     }
 
