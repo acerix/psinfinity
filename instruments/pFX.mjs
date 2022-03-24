@@ -38,10 +38,10 @@ export class pFX {
     // Every 4 measures, randomly play
     Tone.Transport.scheduleRepeat(function(time){
 
-      if (Math.random() > 0.97) {
+      if (Math.random() > .97) {
         self.destination.set({pan: 2*Math.random()-1})
         const clip = self.getRandomClip()
-        self.players[clip].start()
+        self.players[clip].start(time)
       }
 
     }, '1m')

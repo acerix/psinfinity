@@ -48,11 +48,11 @@ export class pClips {
     // Every 4 measures, randomly play
     Tone.Transport.scheduleRepeat(function(time){
 
-      if (Math.random() > 0.95) {
+      if (Math.random() > .95) {
         self.destination.set({pan: 2*Math.random()-1})
         const clip = self.getRandomClip()
         //players.get(clip).start()
-        self.players[clip].start()
+        self.players[clip].start(time)
       }
 
     }, '1m')

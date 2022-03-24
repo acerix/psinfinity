@@ -22,8 +22,7 @@ export class pHat {
     this.volume = new Tone.Volume(-16)
 
     // Create Tone.js player
-    var source = new Tone.Player(options.audio_url)
-      .chain(this.volume, Tone.Master)
+    var source = new Tone.Player(options.audio_url).chain(this.volume, Tone.Master)
 
     // Play on most 16th notes
     var note = -1
@@ -31,7 +30,7 @@ export class pHat {
     Tone.Transport.scheduleRepeat(function(time){
       note++
       if (skip_notes && note % 2 === 1) return
-      source.start()
+      source.start(time)
     }, '16n')
 
     // Randomly silence

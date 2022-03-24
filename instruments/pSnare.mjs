@@ -22,12 +22,12 @@ export class pSnare {
     this.volume = new Tone.Volume(-16)
 
     // Create Tone.js player
-    var source = new Tone.Player(options.audio_url)
-      .chain(this.volume, Tone.Master)
+    var source = new Tone.Player(options.audio_url).chain(this.volume, Tone.Master)
 
-    // Play on event 8th note
+    // Play every second 8th note
     Tone.Transport.scheduleRepeat(function(time){
-      source.start('+8n')
+      // source.start('+8n')
+      source.start(time + Tone.Time('8n').toSeconds())
     }, '4n')
 
     // Randomly silence

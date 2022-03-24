@@ -22,12 +22,11 @@ export class pKick {
     this.volume = new Tone.Volume(-16)
 
     // Create Tone.js player
-    var source = new Tone.Player(options.audio_url)
-      .chain(this.volume, Tone.Master)
+    var source = new Tone.Player(options.audio_url).chain(this.volume, Tone.Master)
 
-    // Play on event 4th note
+    // Play on every 4th note
     Tone.Transport.scheduleRepeat(function(time){
-      source.start()
+      source.start(time)
     }, '4n')
 
     // Randomly silence
