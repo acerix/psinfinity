@@ -36,16 +36,22 @@ export class pClips {
     // Create Tone.js pan/vol
     this.panvol = new Tone.PanVol(Math.random() - 0.5, -16)
 
-    // Create Tone.js player
-    var sources = new Tone.Players(options.audio_urls)
-      .chain(this.panvol, Tone.Master)
+    // Create Tone.js players
+    //var players = new Tone.Players(options.audio_urls).chain(this.panvol, Tone.Master)
 
-    // Every 4 measures randomly play
+    // Tone.Players doesn't seem to work anymore so just use a plain dict
+    this.players = {}
+    for (const [k, v] of Object.entries(options.audio_urls)) {
+      this.players[k] = new Tone.Player(v).toDestination()
+    }
+    
+    // Every 4 measures, randomly play
     Tone.Transport.scheduleRepeat(function(time){
 
       if (Math.random() > 0.95) {
-        sources.stopAll()
-        sources.get( self.getRandomClip() ).start()
+        const clip = self.getRandomClip()
+        //players.get(clip).start()
+        self.players[clip].start()
       }
 
     }, '1m')

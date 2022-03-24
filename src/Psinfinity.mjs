@@ -12,7 +12,7 @@ export class Psinfinity {
 
     var self = this
 
-    console.log('%c * Psinfinity v' + __Psinfinity_version__ + ' * ', 'background: #000; color: #fff;')
+    // console.log('%c * Psinfinity v' + __Psinfinity_version__ + ' * ', 'background: #000; color: #fff;')
 
     // Plugins
     this.plugins = options.hasOwnProperty('plugins') ? options.plugins : {}
@@ -36,7 +36,7 @@ export class Psinfinity {
       scale: this.pScales.random_scale(),
 
       // Random seed
-      seed: btoa(Math.seedrandom()).substr(0, 12),
+      seed: btoa(Math.seedrandom()).substring(0, 2),
 
     }
 

@@ -29,15 +29,18 @@ export class pFX {
     // Create Tone.js pan/vol
     this.panvol = new Tone.PanVol(Math.random() - 0.5, -16)
 
-    // Create Tone.js player
-    var sources = new Tone.Players(options.audio_urls)
-      .chain(this.panvol, Tone.Master)
-
+    // Create Tone.js players
+    this.players = {}
+    for (const [k, v] of Object.entries(options.audio_urls)) {
+      this.players[k] = new Tone.Player(v).toDestination()
+    }
+    
     // Every 4 measures randomly play
     Tone.Transport.scheduleRepeat(function(time){
 
-      if (Math.random() > 0.99) {
-        sources.get( self.getRandomClip() ).start()
+      if (Math.random() > 0.97) {
+        const clip = self.getRandomClip()
+        self.players[clip].start()
       }
 
     }, '1m')
