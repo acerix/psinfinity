@@ -86,9 +86,13 @@ export class Psinfinity {
       }
     }
 
-    // Start Tone.js transport when buffers are loaded
-    Tone.Buffer.on('load', function(){
-      // Wait a bit to prevent all sounds playing at once
+    // // Start Tone.js transport when buffers are loaded
+    // Tone.Buffer.on('load', function(){
+    //   // Wait a bit to prevent all sounds playing at once
+    //   Tone.Transport.start('2n')
+    // })
+
+    Tone.loaded().then(() => {
       Tone.Transport.start('2n')
     })
 
