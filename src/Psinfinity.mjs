@@ -4,7 +4,7 @@
 
 import {pScales} from '../lib/pScales.mjs'
 
-const __Psinfinity_version__ = '0.0.2'
+const __Psinfinity_version__ = '0.0.3'
 
 export class Psinfinity {
 
@@ -79,6 +79,11 @@ export class Psinfinity {
     Tone.Transport.loopEnd = '1m'
     Tone.Transport.bpm.value = this.params.bpm
 
+  }
+
+  // Start playback, in Chrome this is only allowed after a user interaction
+  play() {
+
     // Init instruments
     if (typeof this.instruments === 'object') {
       for (var i in this.instruments) if (typeof this.instruments[i].init === 'function') {
@@ -86,12 +91,7 @@ export class Psinfinity {
       }
     }
 
-    // // Start Tone.js transport when buffers are loaded
-    // Tone.Buffer.on('load', function(){
-    //   // Wait a bit to prevent all sounds playing at once
-    //   Tone.Transport.start('2n')
-    // })
-
+    // Start Tone.js transport when buffers are loaded
     Tone.loaded().then(() => {
       Tone.Transport.start('2n')
     })

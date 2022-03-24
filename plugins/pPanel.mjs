@@ -38,6 +38,7 @@ export class pPanel {
 
     var refresh_link = document.createElement('a')
     refresh_link.textContent = '↻'
+    refresh_link.title = 'Randomize'
     refresh_link.href = './'
     td.appendChild(refresh_link)
 
@@ -78,8 +79,6 @@ export class pPanel {
     tr.appendChild(td)
     td.appendChild(this.render_key_slider(root))
 
-    document.body.appendChild(this.table)
-
 
 
     // Scale
@@ -98,6 +97,22 @@ export class pPanel {
 
 
 
+    // End of table
+
+    document.body.appendChild(this.table)
+
+
+    // Play button
+
+    var play_button = document.createElement('button')
+    play_button.textContent = 'Start Playback ▶ '
+    play_button.href = './'
+    play_button.style.marginTop = '30px'
+    play_button.addEventListener('click', () => {
+      play_button.remove()
+      root.play()
+    })
+    document.body.appendChild(play_button)
 
   }
 
