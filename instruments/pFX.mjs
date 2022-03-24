@@ -27,18 +27,19 @@ export class pFX {
     this.FX = Object.keys(options.audio_urls)
 
     // Create Tone.js pan/vol
-    this.panvol = new Tone.PanVol(Math.random() - 0.5, -16)
+    this.destination = new Tone.PanVol(0, -2).toDestination()
 
     // Create Tone.js players
     this.players = {}
     for (const [k, v] of Object.entries(options.audio_urls)) {
-      this.players[k] = new Tone.Player(v).toDestination()
+      this.players[k] = new Tone.Player(v).connect(this.destination)
     }
     
-    // Every 4 measures randomly play
+    // Every 4 measures, randomly play
     Tone.Transport.scheduleRepeat(function(time){
 
       if (Math.random() > 0.97) {
+        self.destination.set({pan: 2*Math.random()-1})
         const clip = self.getRandomClip()
         self.players[clip].start()
       }
